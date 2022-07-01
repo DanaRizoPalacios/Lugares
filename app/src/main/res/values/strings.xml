@@ -1,9 +1,9 @@
 <resources>
-
-    <string name="app_name">Lugares</string>
+    <string name="app_name">Lugares_v</string>
     <string name="tv_correo">Correo</string>
     <string name="tv_clave">Contraseña</string>
-    <string name="msg_fallo_registro">Fallo la autenticacion del usuario</string>
+    <string name="msg_fallo_registro">Falló la creación del usuario</string>
+    <string name="msg_fallo_login">Falló la autenticación del usuario</string>
     <string name="title_activity_principal">Principal</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -15,6 +15,14 @@
     <string name="menu_lugar">Lugares</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="msg_fallo_login">Fallo de loguear al usuario</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
+    <string name="msg_nombre">Nombre del lugar</string>
+    <string name="msg_correo">Corre (elcorreo@xxxx.xxx)</string>
+    <string name="msg_telefono">Teléfono (9999–9999)</string>
+    <string name="msg_web">Sitio Web</string>
+    <string name="bt_addLugar">Agregar</string>
+    <string name="msg_lugar_added">Lugar agregado</string>
+    <string name="msg_data">Faltan datos!!</string>
 </resources>

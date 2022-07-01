@@ -16,6 +16,8 @@ import kotlinx.parcelize.Parcelize
             val correo: String?,
             @ColumnInfo(name="telefono")
             val telefono: String?,
+            @ColumnInfo(name="web")
+            val web: String?,
             @ColumnInfo(name="latitud")
             val latitud: Double?,
             @ColumnInfo(name="longitud")

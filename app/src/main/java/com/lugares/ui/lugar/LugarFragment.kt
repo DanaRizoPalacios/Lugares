@@ -7,35 +7,27 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.lugares.R
 import com.lugares.databinding.FragmentLugarBinding
 import com.lugares.viewmodel.LugarViewModel
 
 class LugarFragment : Fragment() {
-
     private var _binding: FragmentLugarBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
     private val binding get() = _binding!!
-
+    private lateinit var lugarViewModel: LugarViewModel
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val lugarViewModel =
+        lugarViewModel =
             ViewModelProvider(this).get(LugarViewModel::class.java)
-
         _binding = FragmentLugarBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textHome
-        lugarViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
-        }
-        return root
+        binding.addLugar.setOnClickListener {
+            findNavController().navigate(R.id.action_nav_lugar_to_addLugarFragment)  }
+        return binding.root
     }
-
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

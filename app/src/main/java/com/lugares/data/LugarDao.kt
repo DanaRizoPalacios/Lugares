@@ -3,7 +3,7 @@ package com.lugares.data
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.lugares.model.Lugar
-
+@Dao
 interface LugarDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
