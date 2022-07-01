@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.lugar.AddLugarFragment">
+    tools:context=".ui.lugar.UpdateLugarFragment">
     <ScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -55,10 +55,10 @@
                 android:minHeight="48dp" />
 
             <Button
-                android:id="@+id/bt_agregar"
+                android:id="@+id/bt_actualizar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/bt_addLugar" />
+                android:text="@string/bt_updateLugar" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
