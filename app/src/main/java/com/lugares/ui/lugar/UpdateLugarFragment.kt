@@ -60,7 +60,7 @@ class UpdateLugarFragment : Fragment() {
 
     private fun verWeb() {
         val recurso = binding.etWeb.text.toString()
-        if(recurso.isEmpty()){
+        if(recurso.isNotEmpty()){
             val accion = Intent(Intent.ACTION_VIEW, Uri.parse("http://$recurso"))
             startActivity(accion)//efectivamente se carga el app de correo
         }else{
@@ -72,7 +72,7 @@ class UpdateLugarFragment : Fragment() {
 
     private fun realizarLlamada() {
         val recurso = binding.etTelefono.text.toString()
-        if(recurso.isEmpty()){
+        if(recurso.isNotEmpty()){
             val accion = Intent(Intent.ACTION_CALL)
            accion.data = Uri.parse("tel: $recurso")
             if(requireActivity().checkSelfPermission(Manifest.permission.CALL_PHONE) !=
@@ -92,7 +92,7 @@ class UpdateLugarFragment : Fragment() {
 
     private fun escribirCorreo() {
 val recurso = binding.etCorreo.text.toString()
-        if(recurso.isEmpty()){
+        if(recurso.isNotEmpty()){
             val accion = Intent(Intent.ACTION_SEND)
             accion.type= "message/rfc822"
             accion.putExtra(Intent.EXTRA_EMAIL, arrayOf(recurso))
@@ -148,7 +148,7 @@ val recurso = binding.etCorreo.text.toString()
                     args.lugar.id, nombre, correo, telefono, web, 0.0,
                     0.0, 0.0, "", ""
                 )
-                lugarViewModel.updateLugar(lugar)
+                lugarViewModel.saveLugar(lugar)
                 Toast.makeText(
                     requireContext(),
                     getString(R.string.msg_lugar_updated),
