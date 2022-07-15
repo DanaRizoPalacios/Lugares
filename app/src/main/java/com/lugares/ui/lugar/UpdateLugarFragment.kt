@@ -42,13 +42,13 @@ class UpdateLugarFragment : Fragment() {
         binding.tvLatitud.text=args.lugar.latitud.toString()
         binding.tvLongitud.text=args.lugar.longitud.toString()
 
-        binding.btActualizar.setOnClickListener { updateLugar() }
+        binding.btUpdateLugar.setOnClickListener { updateLugar() }
 
         binding.btEmail.setOnClickListener { escribirCorreo() }
         binding.btPhone.setOnClickListener { realizarLlamada() }
         binding.btWeb.setOnClickListener { verWeb() }
 
-        binding.btActualizar.setOnClickListener {
+        binding.btUpdateLugar.setOnClickListener {
             updateLugar()
 
         }
