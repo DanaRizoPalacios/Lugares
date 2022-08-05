@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.AlertDialog
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.media.MediaPlayer
 import android.net.Uri
 import android.os.Bundle
 import android.view.*
@@ -12,6 +13,7 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
 import com.lugares.R
 import com.lugares.databinding.FragmentUpdateLugarBinding
 import com.lugares.model.Lugar
@@ -24,6 +26,10 @@ class UpdateLugarFragment : Fragment() {
     private var _binding: FragmentUpdateLugarBinding? = null
     private val binding get() = _binding!!
     private lateinit var lugarViewModel: LugarViewModel
+
+    //Ojeto para escuchar audio almacenao en la nube
+    private  lateinit var  mediaPlayer: MediaPlayer
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,12 +48,32 @@ class UpdateLugarFragment : Fragment() {
         binding.tvLatitud.text=args.lugar.latitud.toString()
         binding.tvLongitud.text=args.lugar.longitud.toString()
 
-        binding.btUpdateLugar.setOnClickListener { updateLugar() }
+        if(args.lugar.rutaAudio?.isNotEmpty()==true) {
+            //hay ruta de audio
+            mediaPlayer = MediaPlayer()
+            mediaPlayer.setDataSource(args.lugar.rutaAudio)
+            mediaPlayer.prepare()
+            binding.btPlay.isEnabled=true
+        }else{
+            //no hay ruta de audio
+            binding.btPlay.isEnabled=false
+        }
 
+        //hace que suene el audio
+        binding.btPlay.setOnClickListener { mediaPlayer.start() }
+
+        //se trabaja en la imagen
+        if(args.lugar.rutaImagen?.isNotEmpty()==true){
+            Glide.with(requireContext())
+                .load(args.lugar.rutaImagen)
+                .fitCenter()
+                .into(binding.imagen)
+        }
+
+        binding.btUpdateLugar.setOnClickListener { updateLugar() }
         binding.btEmail.setOnClickListener { escribirCorreo() }
         binding.btPhone.setOnClickListener { realizarLlamada() }
         binding.btWeb.setOnClickListener { verWeb() }
-
         binding.btUpdateLugar.setOnClickListener {
             updateLugar()
 
@@ -56,6 +82,34 @@ class UpdateLugarFragment : Fragment() {
         //esta pantalla tiene menu personalizadp
 
         return binding.root
+    }
+
+    private fun enviarWhatsApp() {
+        val telefono = binding.etTelefono.text
+        if (telefono.isNotEmpty()) {
+            val intent = Intent(Intent.ACTION_VIEW)
+            val uri = "whatsapp://send?phone=506$telefono&text="+
+                    getString(R.string.msg_saludos)
+            intent.setPackage("com.whatsapp")
+            intent.data=Uri.parse(uri)
+            startActivity(intent)
+        } else {
+            Toast.makeText(requireContext(),getString(R.string.msg_datos),
+                Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun verMapa() {
+        val latitud=binding.tvLatitud.text.toString().toDouble()
+        val longitud=binding.tvLongitud.text.toString().toDouble()
+        if (latitud.isFinite() && longitud.isFinite()) {
+            val location = Uri.parse("geo:$latitud,$longitud?z=18")
+            val intent = Intent(Intent.ACTION_VIEW,location)
+            startActivity(intent)
+        } else {
+            Toast.makeText(requireContext(),getString(R.string.msg_datos),
+                Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun verWeb() {
@@ -67,7 +121,6 @@ class UpdateLugarFragment : Fragment() {
             Toast.makeText(requireContext(),getString(R.string.msg_datos),
                 Toast.LENGTH_SHORT).show()
         }
-
     }
 
     private fun realizarLlamada() {

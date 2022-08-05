@@ -39,11 +39,6 @@ class LugarFragment : Fragment() {
             lugarAdapter.setData(it)
         }
 
-
-
-
-
-
         return binding.root
     }
     override fun onDestroyView() {

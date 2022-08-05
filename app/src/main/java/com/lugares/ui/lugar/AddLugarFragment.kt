@@ -89,7 +89,7 @@ class AddLugarFragment : Fragment() {
 
     private fun subeAudio() {
         val audioFile = audioUtiles.audioFile
-        if(audioFile.exists() && audioFile.isFile && audioFile.canRead()){
+        if(audioFile != null && audioFile.exists() && audioFile.isFile && audioFile.canRead()){
         //Si entra al if, podemos subir el audio a la nube
             var usuario = Firebase.auth.currentUser?.email
             val rutaNube = "lugaresApp/${usuario}/audios/${audioFile.name}"
@@ -119,7 +119,7 @@ class AddLugarFragment : Fragment() {
     private fun subeImagen(rutaAudio: String) {
         binding.msgMensaje.text = getString(R.string.msg_subiendo_imagen)
         val imagenFile = imagenUtiles.imagenFile
-        if(imagenFile.exists() && imagenFile.isFile && imagenFile.canRead()){
+        if(imagenFile!= null && imagenFile.exists() && imagenFile.isFile && imagenFile.canRead()){
             //Si entra al if, podemos subir la imagen a la nube
             var usuario = Firebase.auth.currentUser?.email
             val rutaNube = "lugaresApp/${usuario}/imagenes/${imagenFile.name}"
