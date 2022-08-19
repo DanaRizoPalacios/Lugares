@@ -7,14 +7,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.lugares.databinding.FragmentGalleryBinding
-import com.lugares.viewmodel.GalleryViewModel
+import com.lugares.model.Lugar
+import com.lugares.viewmodel.LugarViewModel
 
 class GalleryFragment : Fragment(), OnMapReadyCallback {
     private var _binding: FragmentGalleryBinding? = null
@@ -90,8 +95,8 @@ class GalleryFragment : Fragment(), OnMapReadyCallback {
                 ), 105
             )
         } else {  //Si se tienen los permisos
-            var latitud = 0.0
-            var longitud = 0.0
+            var latitud = 9.97
+            var longitud = -84.00
             ubicacion.lastLocation.addOnSuccessListener { location: Location? ->
                 if (location != null) {
                     latitud = location.latitude

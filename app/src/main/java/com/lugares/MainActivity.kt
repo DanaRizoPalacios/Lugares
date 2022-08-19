@@ -4,23 +4,25 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.lugares.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    companion object
-    pricate
+    companion object {
+        private const val RC_SIGN_IN = 9001
+    }
 
-    private const val RC_SING_IN = 9001
-}
-
+    //Cliente de autenticacion de Google
     private lateinit var googleSignInClient: GoogleSignInClient
 
     private lateinit var auth: FirebaseAuth
@@ -28,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //Se establece el enlace con la vista xml mediante el objeto binding
+        //Se establece el enlace con la vista xml mediante eld objeto binding
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
