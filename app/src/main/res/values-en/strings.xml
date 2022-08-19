@@ -2,10 +2,10 @@
     <string name="app_name" translatable="false">Lugares</string>
     <string name="google_maps_key" translatable="false">AIzaSyD50stWAq12TDOi0b4QfT3AmfsZ6rGmw1Y</string>
     <string name="default_web_client_idg"
-        translatable="false">602751514803-ejg47sq8kkil91897u1f1sg5ag7uggu7.apps.googleusercontent.com</string>
-    <string name="tv_correo">Correo</string>
-    <string name="tv_clave">Contraseña</string>
-    <string name="msg_fallo_registro">Falló la creación del usuario</string>
+        translatable="false">54506711051-92kcs9oefu331u0km7eeb714i5meuucd.apps.googleusercontent.com</string>
+    <string name="tv_correo">Email</string>
+    <string name="tv_clave">Password</string>
+    <string name="msg_fallo_registro">Error creating usar</string>
     <string name="msg_fallo_login">Falló la autenticación del usuario</string>
     <string name="title_activity_principal">Principal</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -17,14 +17,14 @@
     <string name="menu_lugar">Lugares</string>
     <string name="menu_gallery">Mapa</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="msg_nombre">Nombre del lugar</string>
-    <string name="msg_correo">Corre (elcorreo@xxxx.xxx)</string>
-    <string name="msg_telefono">Teléfono (9999–9999)</string>
-    <string name="msg_web">Sitio Web</string>
-    <string name="bt_addLugar">Agregar Lugar</string>
-    <string name="bt_updateLugar">Actualizar Lugar</string>
+    <string name="msg_nombre">Name</string>
+    <string name="msg_correo">Email (theemail@xxxx.xxx)</string>
+    <string name="msg_telefono">Phone (9999–9999)</string>
+    <string name="msg_web">Web Site</string>
+    <string name="bt_addLugar">Add </string>
+    <string name="bt_updateLugar">Update</string>
     <string name="msg_lugar_added">Lugar agregado</string>
-    <string name="msg_data">Faltan datos!!</string>
+    <string name="msg_data">Data Empty!</string>
     <string name="msg_lugar_update">Lugar actualizado!!</string>
     <string name="delete">Eliminar Lugar</string>
     <string name="seguroBorrar">"¿Está seguro de eliminar el lugar "</string>

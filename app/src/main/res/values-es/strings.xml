@@ -2,7 +2,7 @@
     <string name="app_name" translatable="false">Lugares</string>
     <string name="google_maps_key" translatable="false">AIzaSyD50stWAq12TDOi0b4QfT3AmfsZ6rGmw1Y</string>
     <string name="default_web_client_idg"
-        translatable="false">602751514803-ejg47sq8kkil91897u1f1sg5ag7uggu7.apps.googleusercontent.com</string>
+        translatable="false">54506711051-92kcs9oefu331u0km7eeb714i5meuucd.apps.googleusercontent.com</string>
     <string name="tv_correo">Correo</string>
     <string name="tv_clave">Contraseña</string>
     <string name="msg_fallo_registro">Falló la creación del usuario</string>

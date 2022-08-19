@@ -12,6 +12,7 @@ import com.lugares.ui.lugar.LugarFragmentDirections
 class LugarAdapter : RecyclerView.Adapter<LugarAdapter.LugarViewHolder>() {
     //una lista para gestionar la información de los lugares
     private var lista = emptyList<Lugar>()
+
     inner class LugarViewHolder(private val itemBinding: LugarFilaBinding)
         : RecyclerView.ViewHolder (itemBinding.root){
         fun dibuja(lugar: Lugar) {
@@ -20,20 +21,22 @@ class LugarAdapter : RecyclerView.Adapter<LugarAdapter.LugarViewHolder>() {
             itemBinding.tvTelefono.text = lugar.telefono
             itemBinding.tvWeb.text = lugar.web
 
-            //Mostrar imagen del lugar en el card
+            //Mostrar la imagen del lugar en el card
             Glide.with(itemBinding.root.context)
                 .load(lugar.rutaImagen)
                 .circleCrop()
                 .into(itemBinding.image)
 
-            //Activa clock para modificar un lugar
-            itemBinding.vistaFila.setOnClickListener{
+            //Activa el click para modificar un lugar
+            itemBinding.vistaFila.setOnClickListener {
                 val accion = LugarFragmentDirections
                     .actionNavLugarToUpdateLugarFragment(lugar)
                 itemView.findNavController().navigate(accion)
             }
+
         }
     }
+
     //Acá se va a crear una "cajita" del reciclador...  una fila... sólo la estructura
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LugarViewHolder {
         val itemBinding =
@@ -41,11 +44,13 @@ class LugarAdapter : RecyclerView.Adapter<LugarAdapter.LugarViewHolder>() {
                 parent,false)
         return LugarViewHolder(itemBinding)
     }
+
     //Acá se va a solicitar "dibujar" una cajita, según el elemento de la lista...
     override fun onBindViewHolder(holder: LugarViewHolder, position: Int) {
         val lugar = lista[position]
         holder.dibuja(lugar)
     }
+
     override fun getItemCount(): Int {
         return lista.size
     }

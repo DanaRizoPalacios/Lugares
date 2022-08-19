@@ -15,7 +15,7 @@ class LugarViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: LugarRepository = LugarRepository(LugarDao())
 
     //Bloque de inicialización de los atributos
-    init { getAllData = repository.getAllData }
+    init {  getAllData = repository.getAllData  }
 
     fun saveLugar(lugar: Lugar) {
         viewModelScope.launch(Dispatchers.IO) {

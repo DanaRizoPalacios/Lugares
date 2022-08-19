@@ -117,33 +117,38 @@ class AddLugarFragment : Fragment() {
     }
 
     private fun subeImagen(rutaAudio: String) {
-        binding.msgMensaje.text = getString(R.string.msg_subiendo_imagen)
-        val imagenFile = imagenUtiles.imagenFile
-        if(imagenFile!= null && imagenFile.exists() && imagenFile.isFile && imagenFile.canRead()){
-            //Si entra al if, podemos subir la imagen a la nube
-            var usuario = Firebase.auth.currentUser?.email
-            val rutaNube = "lugaresApp/${usuario}/imagenes/${imagenFile.name}"
+        if (imagenUtiles.getFotoTomada()) {
+            binding.msgMensaje.text = getString(R.string.msg_subiendo_imagen)
+            val imagenFile = imagenUtiles.imagenFile
+            if (imagenFile != null && imagenFile.exists() && imagenFile.isFile && imagenFile.canRead()) {
+                // Si entra al if, podemos subir la imagen a la nube
+                var usuario = Firebase.auth.currentUser?.email
+                val rutaNube = "lugaresApp/${usuario}/imagenes/${imagenFile.name}"
 
-            val  rutaLocal = Uri.fromFile(imagenFile)
+                val rutaLocal = Uri.fromFile(imagenFile)
 
-            var referencia: StorageReference = Firebase.storage.reference.child(rutaNube)
+                var referencia: StorageReference = Firebase.storage.reference.child(rutaNube)
 
-            referencia.putFile(rutaLocal)
-                .addOnSuccessListener {
-                    referencia.downloadUrl.addOnSuccessListener {
-                        val rutaImagen = it.toString()
-                        addLugar(rutaAudio, rutaImagen) // Finalmente se graba la info del lugar
+                referencia.putFile(rutaLocal)
+                    .addOnSuccessListener {
+                        referencia.downloadUrl.addOnSuccessListener {
+                            val rutaImagen = it.toString()
+                            addLugar(
+                                rutaAudio,
+                                rutaImagen
+                            )   //Finalmente se graba la info del lugar
+                        }
                     }
-                }
-                .addOnFailureListener{
-                    addLugar(rutaAudio, "")
-                }
-
-        }else{
-            //No hay imagen, no se sube
+                    .addOnFailureListener {
+                        addLugar(rutaAudio, "")
+                    }
+            } else {
+                //No hay imagen... no se sube...
+                addLugar(rutaAudio, "")
+            }
+        } else {
             addLugar(rutaAudio, "")
         }
-
     }
 
     private fun ubicaGPS() {

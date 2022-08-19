@@ -56,6 +56,7 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.0'
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -72,4 +73,7 @@ dependencies {
     //Para clases más adelante usar imágenes y RecyclerView
     implementation 'com.github.bumptech.glide:glide:4.13.0'
     implementation 'jp.wasabeef:glide-transformations:4.3.0'
+
+    //para autenticacion de google
+    implementation 'com.google.android.gms:play-services-auth:20.2.0'
 }

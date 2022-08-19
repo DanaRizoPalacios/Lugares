@@ -27,7 +27,7 @@ class UpdateLugarFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var lugarViewModel: LugarViewModel
 
-    //Ojeto para escuchar audio almacenao en la nube
+    //Objeto para escuchar audio almacenao en la nube
     private  lateinit var  mediaPlayer: MediaPlayer
 
     override fun onCreateView(
@@ -74,12 +74,11 @@ class UpdateLugarFragment : Fragment() {
         binding.btEmail.setOnClickListener { escribirCorreo() }
         binding.btPhone.setOnClickListener { realizarLlamada() }
         binding.btWeb.setOnClickListener { verWeb() }
-        binding.btUpdateLugar.setOnClickListener {
-            updateLugar()
+        binding.btLocation.setOnClickListener { verMapa() }
+        binding.btWhatsapp.setOnClickListener { enviarWhatsApp() }
 
-        }
+        //Se indica que esta pantalla tiene un menu personalizado...
         setHasOptionsMenu(true)
-        //esta pantalla tiene menu personalizadp
 
         return binding.root
     }
@@ -133,10 +132,7 @@ class UpdateLugarFragment : Fragment() {
 
                 requireActivity()
                     .requestPermissions(arrayOf(Manifest.permission.CALL_PHONE), 105)
-
             }
-
-
         }else{
             Toast.makeText(requireContext(),getString(R.string.msg_datos),
                 Toast.LENGTH_SHORT).show()
@@ -202,20 +198,16 @@ val recurso = binding.etCorreo.text.toString()
                     0.0, 0.0, "", ""
                 )
                 lugarViewModel.saveLugar(lugar)
-                Toast.makeText(
-                    requireContext(),
-                    getString(R.string.msg_lugar_updated),
-                    Toast.LENGTH_SHORT
-                ).show()
+
+                Toast.makeText(requireContext(),getString(R.string.msg_lugar_update),Toast.LENGTH_SHORT).show()
                 findNavController().navigate(R.id.action_updateLugarFragment_to_nav_lugar)
             } else {  //Mensaje de error...
-                Toast.makeText(requireContext(), getString(R.string.msg_data), Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(requireContext(),getString(R.string.msg_data),Toast.LENGTH_SHORT).show()
             }
         }
 
-        override fun onDestroyView() {
-            super.onDestroyView()
-            _binding = null
-        }
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
     }
